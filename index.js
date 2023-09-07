@@ -17,6 +17,9 @@ const recipeJSON =
 
   const data = JSON.parse(recipeJSON);
   // console.log(data[0]);
+  // create 3 different variables for chicken, meat beef. get their data from the recipe.JSON
+  // and send that data to EJS file as well.
+  // there you can use them.
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,17 +28,43 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
+// why I can't push to the git? it gives the error: 
+/*
+! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/HachimanQ/JSON-and-EJS-exercise.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+*/
 app.post("/recipe", (req, res) => {
   /*const sent = {
     name: req.body["value"]
   }*/
-  console.log(req.body.choice);
+   
+  // change the if statement to switch statement. after that only thing you need to do is to complete step 3. which is:
+  // 3- change the ejs file text according to the acquired data. 
+  if (req.body.choice == "chicken") {
+    var selectedMeatType = ("they chose chicken")  
+  } else if (req.body.choice == "beef") {
+    var selectedMeatType = ("they chose beef")
+  } else if (req.body.choice == "fish") {
+    var selectedMeatType = ("they chose fish")
+  }
+  // send this data to ejs, create an if statement there, if selectedMeatType == beef, the h2 and other texts should change accordlngly.
+  // however, I also need to send the other API values like the ingredients, protein etc
+  //console.log(selectedMeatType);
+
+
+  //console.log(req.body.choice);
   //res.send
   //Step 3: Write your code here to make this behave like the solution website.
   //Step 4: Add code to views/index.ejs to use the recieved recipe object.
 });
 
-// how to get the data from an API
+
+
 
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
